@@ -17,6 +17,8 @@ exports.run = async(client, prefix, entire, message, args, config, servers) => {
             function play(connection,message){
                 var server = servers[message.guild.id];
 
+                console.log(server.queue);
+
                 server.dispatcher = connection.play(ytdl(server.queue[0],{filter: 'audioonly'}));
                 server.queue.shift();
                 server.dispatcher.on("end",function(){
